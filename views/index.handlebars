@@ -1,0 +1,16 @@
+<h1>Motor Vehicles</h1>
+
+<div class="display row row-cols-1 row-cols-md-2 g-4">
+  {{#each results}}
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">{{description}}</h5>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Amount: R{{total_amount}}</li>
+        <li class="list-group-item">Distance: {{total_distance}}KM</li>
+        <li class="list-group-item">Consumption: {{fuel_consumption}}</li>
+      </ul>
+    </div>
+  {{/each}}
+</div>

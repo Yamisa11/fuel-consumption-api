@@ -2,7 +2,7 @@
 
 export default function FuelConsumptionAPI(db) {
 
-    async function addVehicle({ description, regNumber }) {
+    async function addVehicle( description, regNumber ) {
 
         if (!description) {
             return {
@@ -27,6 +27,7 @@ export default function FuelConsumptionAPI(db) {
         }
 
         const result = await db.oneOrNone(`insert into vehicles (description, reg_number) values ($1, $2) returning id`, [description, regNumber]);
+        console.log(regNumber+" "+description);
         return {
             status: "success",
             id: result.id

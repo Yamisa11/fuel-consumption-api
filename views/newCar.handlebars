@@ -1,0 +1,32 @@
+<h1>Add a new car</h1>
+
+<form action="/api/vehicle" method="post">
+    <div class="mb-3">
+  <label  class="form-label">Description</label>
+  <input type="text" class="form-control" name="description" placeholder="e.g Hyundai i10">
+</div>
+<div class="mb-3">
+  <label  class="form-label">Registration</label>
+  <input type="text" class="form-control" name="registration" >
+</div>
+ <div class="mb-3">
+  <label  class="form-label">Distance in KM</label>
+  <input type="text" class="form-control" name="distance" >
+</div>
+<div class="mb-3">
+  <label  class="form-label">Amount</label>
+  <input type="text" class="form-control" name="amount" >
+</div>
+
+<button type="submit" class="btn btn-primary">submit</button>
+</form>
+
+{{#if message}}
+    <span class="msg">{{message}}</h3>
+{{/if}}
+<script>
+
+            setTimeout(function () {
+            document.querySelector('.msg').style.display = 'none'; },
+            3500);
+          </script>
