@@ -60,12 +60,12 @@ app.post('/api/vehicle', async (req, res) => {
     let distance = req.body.distance
     let amount = req.body.amount
 
-    let theNewCar = {
-        description : description,
-        regNumber : reg_number,
-        distance : distance,
-        amount : amount
-    }
+    // let theNewCar = {
+    //     description : description,
+    //     regNumber : reg_number,
+    //     distance : distance,
+    //     amount : amount
+    // }
 
     let results = await fuelConsumptionFunction.addVehicle(description,reg_number)
     req.flash("message", results.message)
