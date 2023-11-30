@@ -1,2 +1,37 @@
 <h1>Refuel Car</h1>
 
+ 
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">{{theVehicle.description}}</h5>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Amount: R{{theVehicle.total_amount}}</li>
+        <li class="list-group-item">Distance: {{theVehicle.total_distance}}KM</li>
+        <li class="list-group-item">Consumption: {{theVehicle.fuel_consumption}}</li>
+      </ul>
+    </div>
+  
+<form action="/api/refuel/{{theVehicle.id}}" method="post">
+    <div class="mb-3">
+  <label  class="form-label">distance in KM</label>
+  <input type="text" class="form-control" name="theDistance">
+</div>
+<div class="mb-3">
+  <label  class="form-label">amount</label>
+  <input type="text" class="form-control" name="theAmount" >
+</div>
+ <div class="mb-3">
+  <label  class="form-label">liters of fuel bought</label>
+  <input type="text" class="form-control" name="theLiters" >
+</div>
+ <div class="mb-3">
+  <label  class="form-label">Filled up</label>
+  <input type="radio"  name="filledUp" value="filled" >
+  <label  class="form-label">Not filled up</label>
+  <input type="radio"  name="filledUp" value="notFilled" >
+</div>
+
+
+<button type="submit" class="btn btn-primary">submit</button>
+</form>

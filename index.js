@@ -36,15 +36,24 @@ app.get("/api/vehicles", async (req, res) => {
     results: results,
   });
 });
-app.get("/api/vehicle", async (req, res) => {
+app.get("/api/NewVehicle", async (req, res) => {
     let message= req.flash("message")
+    let success= req.flash("success")
   res.render("newCar",{
-    message: message
+    message: message,
+    success:success
   });
 });
 app.get("/api/refuel", async (req, res) => {
   res.render("refuel");
 });
+app.get("/api/vehicle/:id", async (req, res) => {
+    let theId = req.params.id
+    let theVehicle = await fuelConsumptionFunction.vehicle(theId)
+    res.render("refuel", {
+        theVehicle:theVehicle
+    });
+  });
 app.post('/api/vehicle', async (req, res) => {
     let description = req.body.description
     let reg_number = req.body.registration
@@ -60,11 +69,28 @@ app.post('/api/vehicle', async (req, res) => {
 
     let results = await fuelConsumptionFunction.addVehicle(description,reg_number)
     req.flash("message", results.message)
-    console.log(results);
-    console.log(reg_number);
+    req.flash("success", results.status)
+   
 
     res.redirect("/api/vehicle")
 });
-// app.post('/api/refuel', fuelConsumptionAPI.refuel);
+app.post('/api/refuel/:id', async (req, res) => {
+    let vehicleId = req.params.id
+    let theDistance = req.body.theDistance
+    let theAmount = req.body.theAmount
+    let theLiters = req.body.theLiters
+    let filledUp = req.body.filledUp
+    let filledUpRes 
+
+    if (filledUp == "notFilled") {
+        filledUpRes = false
+    } else {
+        filledUpRes = true
+    }
+   
+  let theRes =   await fuelConsumptionFunction.refuel(vehicleId,theLiters,theAmount,theDistance,filledUpRes)
+  console.log(theRes);
+   
+});
 
 app.listen(PORT, () => console.log(`App started on port: ${PORT}`));
