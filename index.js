@@ -90,6 +90,7 @@ app.post('/api/refuel/:id', async (req, res) => {
    
   let theRes =   await fuelConsumptionFunction.refuel(vehicleId,theLiters,theAmount,theDistance,filledUpRes)
   console.log(theRes);
+  res.redirect("/")
    
 });
 
